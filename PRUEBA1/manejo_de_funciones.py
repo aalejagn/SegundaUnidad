@@ -1,22 +1,20 @@
 from tkinter import Tk, Label,Frame, Entry, Button, ttk, messagebox
 from db_soriana import ver_clientes
-from interfaz_soriana import creacion_ventana
 """
 Manejo de interfaz para cada entidad
 """
 # # Manejo de la entidad de cliente frontend
-def manejar_clientes(ventana):
+def manejar_clientes(ventana,rol,barra_lateral):
     frame_clientes = Frame(ventana, bg ="#E6F0FA")
     # # REGISTRAMOS LAS ENTRADAS
     entradas = {}
     filas = ["Telefono", "Nombre", "Dirección", "RFC", "Correo"]
 
     for i, fila in enumerate(filas):
-        Label(frame_clientes, text=fila, bg = "#E6F0FA").grid(row=i, column=0, padx=5, pady=5, sticky="e")
-    entrada = Entry(frame_clientes)
-    entrada.grid(row=i, column=1, padx=5, pady=5)
-    entradas[fila] = entrada
-
+        Label(frame_clientes, text=fila, bg="#E6F0FA").grid(row=i, column=0, padx=5, pady=5, sticky="e")
+        entrada = Entry(frame_clientes)
+        entrada.grid(row=i, column=1, padx=5, pady=5)
+        entradas[fila] = entrada
     # # Creacion de framen para los botones para la funcion de clientes
     frame_botones = Frame(frame_clientes, bg = "#E6F0FA")
     frame_botones.grid(row=5, columnspan=2, pady=10)
