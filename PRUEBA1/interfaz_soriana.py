@@ -1,5 +1,5 @@
 from tkinter import Tk, Label,Frame, Entry, Button, ttk, messagebox
-from db_sorianaa import insertar_cliente
+from db_sorianaa import ver_clientes
 from manejo_de_funciones import *
 
 """
@@ -68,7 +68,7 @@ def barra_lateral(ventana, rol):
 
     opciones = ["Clientes","Inventario", "Proveedor", "Unidades", "Categorias", "Metodo de pago", "Empleado"]
     funciones = {
-        "Clientes":manejar_clientes,
+        "Clientes":manejar_clientes(),
         "Inventario":manejar_inventario,
         "Proveedor":manejar_proveedor,
         "Unidades":manejar_unidades,
