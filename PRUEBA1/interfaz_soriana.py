@@ -1,6 +1,6 @@
 from tkinter import Tk, Label,Frame, Entry, Button, ttk, messagebox
 from db_sorianaa import insertar_cliente
-
+import manejo_de_funciones
 
 """
 Funcion de creacion de ventana
@@ -67,21 +67,25 @@ def barra_lateral(ventana, rol):
     barra_lateral = Frame(ventana, bg="#D3D3D3", width=200)
     barra_lateral.pack(side="left", fill="y")
 
-    opciones = ["Inventario", "Clientes", "Proveedor", "Pedidos", "Reportes", "Configuración", "Gastos", "Informacion"]
-
+    opciones = ["Clientes","Inventario", "Proveedor", "Unidades", "Categorias", "Metodo de pago", "Empleado"]
+    funciones = {
+        "Clientes":manejar_clientes,
+        "Inventario":manejar_inventario,
+        "Proveedor":manejar_proveedor,
+        "Unidades":manejar_unidades,
+        "Categorias":manejar_categorias,
+        "Metodo de pago":manejar_metodo_pago,
+        "Empleado":manejar_empleado
+    }
     for opcion in opciones:
-        if opcion == "Clientes":
             Button(barra_lateral, text=opcion, bg="#4682B4", fg="white", width=20,
                    font=("Arial", 12),
-                   command=lambda: manejar_clientes(ventana, rol, barra_lateral)).pack(pady=5, padx=10)
-        else:
-            Button(barra_lateral, text=opcion, font=("Arial", 12), bg="#4682B4", fg="white", width=20)\
-                .pack(pady=5, padx=10)
+                   command=funciones[opcion]).pack(pady=5, padx=10)
 
 
 
-def manejar_clientes(ventana,rol,barra_lateral):
-    pass
+
+
 
 def crear_seccion_clientes():
     pass
