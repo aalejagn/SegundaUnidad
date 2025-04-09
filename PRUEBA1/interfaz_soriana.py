@@ -1,6 +1,6 @@
 from tkinter import Tk, Label,Frame, Entry, Button, ttk, messagebox
 from db_sorianaa import insertar_cliente
-import manejo_de_funciones
+from manejo_de_funciones import *
 
 """
 Funcion de creacion de ventana
@@ -25,7 +25,6 @@ def validar_usuarios(entry_usuario,entry_contraseña,ventana,marco_login):
         if entry_usuario.get() in ["Ad", "Trabajador"]:
             marco_login.destroy()
             barra_lateral(ventana, entry_usuario)
-
 
 """
 Creacion de presentacion
@@ -82,17 +81,8 @@ def barra_lateral(ventana, rol):
                    font=("Arial", 12),
                    command=funciones[opcion]).pack(pady=5, padx=10)
 
-
-
-
-
-
 def crear_seccion_clientes():
     pass
-
-
-
-
 
 ventana = creacion_ventana()
 ventana_login(ventana)
