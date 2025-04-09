@@ -16,13 +16,13 @@ def creacion_ventana():
 Creamos la funcion de validar datos para usuarios
 """
 def validar_usuarios(entry_usuario,entry_contraseña,ventana,marco_login):
-    if not entry_usuario.get() == ["Ad", "Trabajador"]:
+    if entry_usuario.get() not in ["Ad", "Trabajador"]:
         messagebox.showerror("Error", "Ingrese un usuario valido")
     elif not entry_contraseña.get() == "a":
         messagebox.showerror("Error", "Contraseña invalida")
     else:
         messagebox.showinfo("Ingresandoooo.....", "Ingresando como Administrador")
-        if entry_usuario in ["Ad", "Trabajador"]:
+        if entry_usuario.get() in ["Ad", "Trabajador"]:
             marco_login.destroy()
             barra_lateral(ventana, entry_usuario)
 
