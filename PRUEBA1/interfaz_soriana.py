@@ -15,13 +15,16 @@ def creacion_ventana():
 """
 Creamos la funcion de validar datos para usuarios
 """
-def validar_usuarios(entry1,entry2,ventana):
-    if not entry1.get() == "Ad":
+def validar_usuarios(entry_usuario,entry_contraseña,ventana,marco_login):
+    if not entry_usuario.get() == ["Ad", "Trabajador"]:
         messagebox.showerror("Error", "Ingrese un usuario valido")
-    elif not entry2.get() == "Alesito":
+    elif not entry_contraseña.get() == "a":
         messagebox.showerror("Error", "Contraseña invalida")
     else:
         messagebox.showinfo("Ingresandoooo.....", "Ingresando como Administrador")
+        if entry_usuario in ["Ad", "Trabajador"]:
+            marco_login.destroy()
+            barra_lateral(ventana, entry_usuario)
 
 
 """
@@ -54,8 +57,17 @@ def ventana_login(ventana):
     entry_contraseña.grid(row=4, column=1, pady=5, padx=5, ipadx=10,ipady=5)
     
     Button(marco_login, text="Ingresar", font=("Arial", 13), width=15, 
-           command=lambda: validar_usuarios(entry_usuario, entry_contraseña, ventana))\
+           command=lambda: validar_usuarios(entry_usuario, entry_contraseña, ventana,marco_login))\
         .grid(row=5, column=0, columnspan=2, pady=20)
+
+def barra_lateral(ventana,rol):
+    barra_lateral = Frame(ventana, bg="#E6F0FA", width=200)
+    barra_lateral.pack(side="left", fill= "y")
+
+    opciones = ["Inventario", "Clientes", "Proveedor", "Pedidos", "Reportes", "Configuración", "Gastos", "Informacion"]
+
+
+
 
 
 
