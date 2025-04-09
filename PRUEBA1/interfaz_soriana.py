@@ -18,7 +18,7 @@ Creamos la funcion de validar datos para usuarios
 def validar_usuarios(entry_usuario,entry_contraseña,ventana,marco_login):
     if entry_usuario.get() not in ["Ad", "Trabajador"]:
         messagebox.showerror("Error", "Ingrese un usuario valido")
-    elif not entry_contraseña.get() == "a":
+    if not entry_contraseña.get() == "a":
         messagebox.showerror("Error", "Contraseña invalida")
     else:
         messagebox.showinfo("Ingresandoooo.....", "Ingresando como Administrador")
@@ -61,11 +61,32 @@ def ventana_login(ventana):
         .grid(row=5, column=0, columnspan=2, pady=20)
 
 def barra_lateral(ventana,rol):
-    barra_lateral = Frame(ventana, bg="#E6F0FA", width=200)
+    barra_lateral = Frame(ventana, bg="#D3D3D3", width=200)
     barra_lateral.pack(side="left", fill= "y")
 
     opciones = ["Inventario", "Clientes", "Proveedor", "Pedidos", "Reportes", "Configuración", "Gastos", "Informacion"]
+    for opcion in opciones:
+        if opcion == "Cliente":
+            Button(barra_lateral, text = opcion, bg = "#4682B4", fg = "white", width=20,
+                   command= lambda: manejar_clientes(ventana,rol,barra_lateral)).pack(pady=5,padx=10)
+        else:
+            Button(barra_lateral, text=opcion, font=("Arial",12), bg = "#4682B4", fg = "white", width = 20)
 
+        if opcion == "Inventario":
+            break
+        if opcion == "Proveedor":
+            break
+        if opcion == "Pedidos":
+            break
+        if opcion == "Reportes":
+            break
+        if opcion == "Configuracion":
+            break
+        if opcion == "Informacion":
+            break
+
+def manejar_clientes(ventana,rol,barra_lateral):
+    pass
 
 
 
@@ -75,6 +96,3 @@ ventana = creacion_ventana()
 ventana_login(ventana)
 ventana.mainloop()
 
-"""
-ola
-"""
