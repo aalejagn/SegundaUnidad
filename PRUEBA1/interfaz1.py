@@ -51,35 +51,6 @@ def crear_dashboard(ventana, rol):
         else:
             Button(sidebar, text=opcion, font=("Arial", 12), bg="#4682B4", fg="white", width=20).pack(pady=5, padx=10)
 
-    main_frame = Frame(ventana, bg="#E6F0FA")
-    main_frame.pack(expand=True, fill="both")
-
-    canvas = Canvas(main_frame, bg="#E6F0FA", highlightthickness=0)
-    canvas.pack(expand=True, fill="both")
-
-    canvas.configure(bg="#6A5ACD")
-
-    Label(canvas, text="PUNTO DE VENTA", font=("Arial", 24, "bold"), fg="white", bg="#6A5ACD").place(relx=0.5, rely=0.1, anchor="center")
-    Label(canvas, text="Sistema moderno y eficiente", font=("Arial", 14), fg="white", bg="#6A5ACD").place(relx=0.5, rely=0.18, anchor="center")
-
-    Label(canvas, text="[Ventas]", font=("Arial", 12), fg="white", bg="#6A5ACD").place(relx=0.2, rely=0.3, anchor="center")
-    Label(canvas, text="[Reportes]", font=("Arial", 12), fg="white", bg="#6A5ACD").place(relx=0.5, rely=0.3, anchor="center")
-    Label(canvas, text="[Inventario]", font=("Arial", 12), fg="white", bg="#6A5ACD").place(relx=0.8, rely=0.3, anchor="center")
-
-    features = [
-        "Rápido y fácil de usar",
-        "Control de inventario en tiempo real",
-        "Reportes detallados de ventas",
-        "Gestión de clientes y proveedores"
-    ]
-    for i, feature in enumerate(features):
-        Label(canvas, text="●", font=("Arial", 12), fg="#32CD32", bg="#6A5ACD").place(relx=0.35, rely=0.45 + i*0.05, anchor="w")
-        Label(canvas, text=feature, font=("Arial", 12), fg="white", bg="#6A5ACD").place(relx=0.38, rely=0.45 + i*0.05, anchor="w")
-
-    Button(canvas, text="¡COMENZAR AHORA!", font=("Arial", 14, "bold"), bg="#FFA500", fg="white", 
-           command=lambda: mostrar_contenido_principal(ventana, rol, sidebar)).place(relx=0.5, rely=0.7, anchor="center")
-
-# Show the main content after clicking "¡COMENZAR AHORA!"
 def mostrar_contenido_principal(ventana, rol, sidebar):
     for widget in ventana.winfo_children():
         if widget != sidebar:

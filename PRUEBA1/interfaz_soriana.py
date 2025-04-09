@@ -32,10 +32,10 @@ Creacion de presentacion
 """
 def ventana_login(ventana):
     marco_sombra = Frame(ventana,bg = "#80C4DE")
-    marco_sombra.pack(pady=60)
+    marco_sombra.pack()
 
     marco_login = Frame(ventana, bg="white", padx=40, pady=40)
-    marco_login.pack()
+    marco_login.pack(pady=60)
     
     Label(marco_login, text="🛒 SORIANA", font=("Arial", 24, "bold"), fg="#1E90FF", bg = "white")\
         .grid(row=0, column=0, columnspan=2, pady=(0,10))
@@ -60,32 +60,30 @@ def ventana_login(ventana):
            command=lambda: validar_usuarios(entry_usuario, entry_contraseña, ventana,marco_login))\
         .grid(row=5, column=0, columnspan=2, pady=20)
 
-def barra_lateral(ventana,rol):
-    barra_lateral = Frame(ventana, bg="#D3D3D3", width=200)
-    barra_lateral.pack(side="left", fill= "y")
 
     opciones = ["Inventario", "Clientes", "Proveedor", "Pedidos", "Reportes", "Configuración", "Gastos", "Informacion"]
-    for opcion in opciones:
-        if opcion == "Cliente":
-            Button(barra_lateral, text = opcion, bg = "#4682B4", fg = "white", width=20,
-                   command= lambda: manejar_clientes(ventana,rol,barra_lateral)).pack(pady=5,padx=10)
-        else:
-            Button(barra_lateral, text=opcion, font=("Arial",12), bg = "#4682B4", fg = "white", width = 20)
 
-        if opcion == "Inventario":
-            break
-        if opcion == "Proveedor":
-            break
-        if opcion == "Pedidos":
-            break
-        if opcion == "Reportes":
-            break
-        if opcion == "Configuracion":
-            break
-        if opcion == "Informacion":
-            break
+def barra_lateral(ventana, rol):
+    barra_lateral = Frame(ventana, bg="#D3D3D3", width=200)
+    barra_lateral.pack(side="left", fill="y")
+
+    opciones = ["Inventario", "Clientes", "Proveedor", "Pedidos", "Reportes", "Configuración", "Gastos", "Informacion"]
+
+    for opcion in opciones:
+        if opcion == "Clientes":
+            Button(barra_lateral, text=opcion, bg="#4682B4", fg="white", width=20,
+                   font=("Arial", 12),
+                   command=lambda: manejar_clientes(ventana, rol, barra_lateral)).pack(pady=5, padx=10)
+        else:
+            Button(barra_lateral, text=opcion, font=("Arial", 12), bg="#4682B4", fg="white", width=20)\
+                .pack(pady=5, padx=10)
+
+
 
 def manejar_clientes(ventana,rol,barra_lateral):
+    pass
+
+def crear_seccion_clientes():
     pass
 
 
