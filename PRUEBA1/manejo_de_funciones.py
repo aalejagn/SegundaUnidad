@@ -6,7 +6,7 @@ Manejo de interfaz para cada entidad
 def manejo_usuarios(ventana,rol,barra_lateral):
     for widget in ventana.winfo_children():
         if widget != barra_lateral:
-            widget.destroy
+            widget.destroy()
 
     main_frame = Frame(ventana, bg = "#E6F0FA")
     main_frame.pack(expand=True, fill="both")
@@ -22,7 +22,7 @@ def manejo_usuarios(ventana,rol,barra_lateral):
               font= ("Arial", 12), bg = "#E6F0FA").pack(pady=10)
 
 # # Manejo de la entidad de cliente frontend
-def crear_seccion_clientes(ventana, rol):
+def crear_seccion_clientes(ventana, rol, barra_lateral):
     frame_clientes = Frame(ventana, bg="#E6F0FA")
     # # REGISTRAMOS LAS ENTRADAS
     entradas = {}
@@ -45,8 +45,8 @@ def crear_seccion_clientes(ventana, rol):
         tabla.column(col, width=100)
     tabla.grid(row=6, columnspan=2, pady=10, sticky="nsew")
     ver_clientes(tabla)
+    return frame_clientes
 
-    
 # # # # Manejo de la entidad de cliente
 def manejar_inventario():
     messagebox.showinfo("informando", "Hola que hace?")
