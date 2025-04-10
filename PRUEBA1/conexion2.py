@@ -9,7 +9,7 @@ def conectar():
             user="root",
             password="Duoesme12@",
             database="db_soriana",
-            port=3306  # ¡Cambiado de 'puerto' a 'port'!
+            port=3306  
         )
         return conexion
     except Error as err:
