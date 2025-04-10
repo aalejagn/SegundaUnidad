@@ -15,16 +15,16 @@ def creacion_ventana():
 """
 Creamos la funcion de validar datos para usuarios
 """
-def validar_usuarios(entry_usuario,entry_contraseña,ventana,marco_login):
+def validar_usuarios(entry_usuario, entry_contraseña, ventana, marco_login):
     if entry_usuario.get() not in ["Ad", "Trabajador"]:
         messagebox.showerror("Error", "Ingrese un usuario valido")
-    if not entry_contraseña.get() == "a":
+    elif not entry_contraseña.get() == "a":
         messagebox.showerror("Error", "Contraseña invalida")
     else:
         messagebox.showinfo("Ingresandoooo.....", "Ingresando como Administrador")
-        if entry_usuario.get() in ["Ad", "Trabajador"]:
-            marco_login.destroy()
-            barra_lateral(ventana, entry_usuario)
+        marco_login.destroy()
+        barra = barra_lateral(ventana, entry_usuario)  # Guardamos la barra
+        manejo_usuarios(ventana, entry_usuario, barra)
 
 """
 Creacion de presentacion
@@ -70,9 +70,9 @@ def barra_lateral(ventana, rol):
     barra_lateral = Frame(ventana, bg="#D3D3D3", width=200)
     barra_lateral.pack(side="left", fill="y")
 
-    opciones = ["Clientes","Inventario", "Proveedor", "Unidades", "Categorias", "Metodo de pago", "Empleado"]
+    opciones = ["Clientes", "Inventario", "Proveedor", "Unidades", "Categorias", "Metodo de pago", "Empleado"]
     funciones = {
-        "Clientes": crear_seccion_clientes(ventana, rol),
+        "Clientes": lambda: manejo_usuarios(ventana, rol, barra_lateral),  # Llama a manejo_usuarios
         "Inventario": manejar_inventario,
         "Proveedor": manejar_proveedor,
         "Unidades": manejar_unidades,
@@ -81,9 +81,30 @@ def barra_lateral(ventana, rol):
         "Empleado": manejar_empleado
     }
     for opcion in opciones:
-            Button(barra_lateral, text=opcion, bg="#4682B4", fg="white", width=20,
-                   font=("Arial", 12),
-                   command=funciones.get(opcion, lambda: None)).pack(pady=5, padx=10)
+        Button(barra_lateral, text=opcion, bg="#4682B4", fg="white", width=20,
+               font=("Arial", 12),
+               command=funciones.get(opcion, lambda: None)).pack(pady=5, padx=10)
+   
+    # # frame secundariok
+    main_frame = Frame(ventana, bf ="#6A5ACD")
+    main_frame.pack(expand=True, fill = "both")
+    Label(main_frame, text="PUNTO DE VENTA", font=("Arial",20, "bold"),bg="#6A5ACD").pack(pady=20)
+    Label(main_frame, text = "Sistema Moderno y Eficiente", font=("Arial", 14), bg = "#6A5ACD").pack(pady=10)
+
+    caracteristicas = [
+        "Rápido y fácil de usar",
+        "Control de inventario en tiempo real",
+        "Reportes detallados de ventas",
+        "Gestión de clientes y proveedores"
+    ]
+
+    for i, texto in enumerate(caracteristicas):
+        Label(main_frame, text="●", font=("Arial", 12), fg="#32CD32", bg="#6A5ACD").pack()
+        Label(main_frame, text=texto, font=("Arial", 12), fg="white", bg="#6A5ACD").pack()
+
+    Button(main_frame, text="¡COMENZAR AHORA!", font=("Arial", 14, "bold"), bg="#FFA500", fg="white",
+           command=lambda: manejo_usuarios(ventana, rol, barra_lateral)).pack(pady=30)
+
 
 def mostrar_conenido_principal(ventana,rol,barra_lateral):
     for widget in ventana.winfo_children():
