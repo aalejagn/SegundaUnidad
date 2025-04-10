@@ -11,17 +11,19 @@ def manejo_usuarios(ventana,rol,barra_lateral):
     main_frame = Frame(ventana, bg = "#E6F0FA")
     main_frame.pack(expand=True, fill="both")
 
+    Label(main_frame, text="PUTNO DE VENTA", font=("Arial", 20, "bold"), bg = "#E6F0FA").pack(pady=10)
+    Label(main_frame, text=f"Rol{rol}", font=("Arial", 12), bg="#E6F0FA").pack()
+
     if rol == "Ad":
         frame_clientes = crear_seccion_clientes(main_frame,rol)
-        frame_clientes.pack(pady = 10)
+        frame_clientes.pack(pady=10)
     else:
         Label(main_frame, text = "Acceso restringido: Solo Administradores pueden gestionar clientes.",
-              font= ("Arial", 12), bg = "#E6F0FA").pack(pady= 10)
+              font= ("Arial", 12), bg = "#E6F0FA").pack(pady=10)
 
 # # Manejo de la entidad de cliente frontend
 def crear_seccion_clientes(ventana, rol):
     frame_clientes = Frame(ventana, bg="#E6F0FA")
-    frame_clientes.pack(side="right", fill="both", expand=True)
     # # REGISTRAMOS LAS ENTRADAS
     entradas = {}
     filas = ["Telefono", "Nombre", "Dirección", "RFC", "Correo"]
@@ -43,8 +45,8 @@ def crear_seccion_clientes(ventana, rol):
         tabla.column(col, width=100)
     tabla.grid(row=6, columnspan=2, pady=10, sticky="nsew")
     ver_clientes(tabla)
-    return frame_clientes
 
+    
 # # # # Manejo de la entidad de cliente
 def manejar_inventario():
     messagebox.showinfo("informando", "Hola que hace?")
