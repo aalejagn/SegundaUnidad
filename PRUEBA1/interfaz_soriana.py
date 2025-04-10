@@ -1,4 +1,4 @@
-from tkinter import Tk, Label, Frame, Entry, Button, ttk, messagebox
+from tkinter import Tk, Label, Frame, Entry, Button, ttk, messagebox, StringVar
 from db_sorianaa import ver_clientes  # Corregido el nombre del módulo
 from manejo_de_funciones import *
 
@@ -11,20 +11,6 @@ def creacion_ventana():
     ventana.geometry("800x600")
     ventana.configure(bg="#E6F0FA")  # Color de la ventana principal
     return ventana
-
-"""
-Creamos la funcion de validar datos para usuarios
-"""
-def validar_usuarios(entry_usuario, entry_contraseña, ventana, marco_login):
-    if entry_usuario.get() not in ["Ad", "Trabajador"]:
-        messagebox.showerror("Error", "Ingrese un usuario valido")
-    elif not entry_contraseña.get() == "a":
-        messagebox.showerror("Error", "Contraseña invalida")
-    else:
-        messagebox.showinfo("Ingresandoooo.....", "Ingresando como Administrador")
-        marco_login.destroy()
-        barra = barra_lateral(ventana, entry_usuario)  # Guardamos la barra
-        manejo_usuarios(ventana, entry_usuario.get(), barra)  # Pasamos el valor del Entry
 
 """
 Creacion de presentacion
@@ -45,19 +31,37 @@ def ventana_login(ventana):
     info = "Dirección: LAS GRANJAS AQUI MATAN\nCelular: +52 9613765449\nEmail: ag0013155@gmail.com"
     Label(marco_login, text=info, font=("Arial", 12), bg="white", justify="center")\
         .grid(row=2, column=0, columnspan=2, pady=(10))
+    
+    # # Creacion de usuario
     Label(marco_login, text="Ingrese el usuario:", font=("Arial", 12), bg="white")\
         .grid(row=3, column=0, sticky="e", pady=5, padx=5)
-    entry_usuario = Entry(marco_login, font=("Arial", 12))
-    entry_usuario.grid(row=3, column=1, pady=5, padx=5, ipadx=10, ipady=5)
+    tipo_usuario = StringVar()
+    opciones = ttk.Combobox(marco_login, values=["Gerente", "Trabajador"], state="readonly", textvariable=tipo_usuario, font=("Arial",12))
+    opciones.grid(row=3, column=1, pady=0, padx=10, ipadx=10, ipady=2)
     
     Label(marco_login, text="Ingrese la contraseña:", font=("Arial", 12), bg="white")\
         .grid(row=4, column=0, sticky="e", pady=5, padx=5)
     entry_contraseña = Entry(marco_login, font=("Arial", 12), show="*")
-    entry_contraseña.grid(row=4, column=1, pady=5, padx=5, ipadx=10, ipady=5)
+    entry_contraseña.grid(row=4, column=1, pady=0, padx=5, ipadx=18, ipady=2)
     
     Button(marco_login, text="Ingresar", font=("Arial", 13), width=15, 
-           command=lambda: validar_usuarios(entry_usuario, entry_contraseña, ventana, marco_login))\
+           command=lambda: validar_usuarios(tipo_usuario, entry_contraseña, ventana, marco_login))\
         .grid(row=5, column=0, columnspan=2, pady=20)
+
+"""
+Creamos la funcion de validar datos para usuarios
+"""
+def validar_usuarios(opciones, entry_contraseña, ventana, marco_login):
+
+    if opciones not in ["Gerente", "Trabajador"]:
+        messagebox.showerror("Error", "Ingrese un usuario válido")
+    elif entry_contraseña != "a":
+        messagebox.showerror("Error", "Contraseña inválida")
+    else:
+        messagebox.showinfo("Ingresando...", f"Ingresando como {tipo_usuario}")
+        marco_login.destroy()
+        barra = barra_lateral(ventana, tipo_usuario)  # ← usuario es un string
+        manejo_usuarios(ventana, tipo_usuario,barra)
     
 """
 Creacion de lado lateral para los botones
@@ -103,8 +107,8 @@ def barra_lateral(ventana, rol):
            command=lambda: manejo_usuarios(ventana, rol.get(), barra_lateral)).pack(pady=30)
 
     return barra_lateral
-
-ventana = creacion_ventana()
-ventana_login(ventana)
-ventana.mainloop()
+if __name__ == "__main__":
+    ventana = creacion_ventana()
+    ventana_login(ventana)
+    ventana.mainloop()
 
