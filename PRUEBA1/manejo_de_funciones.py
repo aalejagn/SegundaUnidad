@@ -1,5 +1,5 @@
 from tkinter import Tk, Label, Frame, Entry, Button, ttk, messagebox
-from db_soriana import ver_clientes
+from db_sorianaa import *
 
 """
 Manejo de interfaz para cada entidad
@@ -27,7 +27,7 @@ def crear_seccion_clientes(ventana, tipo_usuario):
     frame_clientes = Frame(ventana, bg="#E6F0FA")
     # REGISTRAMOS LAS ENTRADAS
     entradas = {}
-    filas = ["Telefono", "Nombre", "Dirección", "RFC", "Correo"]
+    filas = ["Telefono:", "Nombre:", "Dirección:", "RFC:", "Correo:"]
 
     for i, fila in enumerate(filas):
         Label(frame_clientes, text=fila, bg="#E6F0FA").grid(row=i, column=0, padx=5, pady=5, sticky="e")
@@ -46,76 +46,37 @@ def crear_seccion_clientes(ventana, tipo_usuario):
         tabla.column(col, width=100)
     tabla.grid(row=6, columnspan=2, pady=10, sticky="nsew")
     ver_clientes(tabla)
-    return frame_clientes
 
+    # # commandos de botones
+    def on_agregar():
+        telefono = entradas["Telefono:"].get().strip()
+        nombre = entradas["Nombre:"].get().strip()
+        direccion = entradas["Dirección:"].get().strip()
+        rfc = entradas["RFC:"].get().strip()
+        correo = entradas["Correo:"].get().strip()
+
+        if insertar_cliente(telefono,nombre,direccion,rfc,correo):
+            ver_clientes(tabla)
+            limpiar_campos(entradas.values())
+    
+    Button(frame_botones, text="Agregar", command=on_agregar).grid(row=5,column=0,padx=5
+    )
+    return frame_clientes
 # Manejo de la entidad de inventario
 def manejar_inventario(ventana, barra_lateral):
-    for widget in ventana.winfo_children():
-        if widget != barra_lateral:
-            widget.destroy()
-
-    main_frame = Frame(ventana, bg="#E6F0FA")
-    main_frame.pack(expand=True, fill="both")
-
-    Label(main_frame, text="INVENTARIO", font=("Arial", 20, "bold"), bg="#E6F0FA").pack(pady=10)
-    Label(main_frame, text="Aquí va el contenido del inventario", font=("Arial", 12), bg="#E6F0FA").pack(pady=10)
-
+    pass
 # Manejo de proveedores
 def manejar_proveedor(ventana, barra_lateral):
-    for widget in ventana.winfo_children():
-        if widget != barra_lateral:
-            widget.destroy()
-
-    main_frame = Frame(ventana, bg="#E6F0FA")
-    main_frame.pack(expand=True, fill="both")
-
-    Label(main_frame, text="PROVEEDORES", font=("Arial", 20, "bold"), bg="#E6F0FA").pack(pady=10)
-    Label(main_frame, text="Aquí va el contenido de proveedores", font=("Arial", 12), bg="#E6F0FA").pack(pady=10)
-
+    pass
 # Manejo de unidades
 def manejar_unidades(ventana, barra_lateral):
-    for widget in ventana.winfo_children():
-        if widget != barra_lateral:
-            widget.destroy()
-
-    main_frame = Frame(ventana, bg="#E6F0FA")
-    main_frame.pack(expand=True, fill="both")
-
-    Label(main_frame, text="UNIDADES", font=("Arial", 20, "bold"), bg="#E6F0FA").pack(pady=10)
-    Label(main_frame, text="Aquí va el contenido de unidades", font=("Arial", 12), bg="#E6F0FA").pack(pady=10)
-
+    pass
 # Manejo de categorias
 def manejar_categorias(ventana, barra_lateral):
-    for widget in ventana.winfo_children():
-        if widget != barra_lateral:
-            widget.destroy()
-
-    main_frame = Frame(ventana, bg="#E6F0FA")
-    main_frame.pack(expand=True, fill="both")
-
-    Label(main_frame, text="CATEGORÍAS", font=("Arial", 20, "bold"), bg="#E6F0FA").pack(pady=10)
-    Label(main_frame, text="Aquí va el contenido de categorías", font=("Arial", 12), bg="#E6F0FA").pack(pady=10)
-
+    pass
 # Manejo de metodo de pago
 def manejar_metodo_pago(ventana, barra_lateral):
-    for widget in ventana.winfo_children():
-        if widget != barra_lateral:
-            widget.destroy()
-
-    main_frame = Frame(ventana, bg="#E6F0FA")
-    main_frame.pack(expand=True, fill="both")
-
-    Label(main_frame, text="MÉTODO DE PAGO", font=("Arial", 20, "bold"), bg="#E6F0FA").pack(pady=10)
-    Label(main_frame, text="Aquí va el contenido de método de pago", font=("Arial", 12), bg="#E6F0FA").pack(pady=10)
-
+    pass
 # Manejo de empleado
 def manejar_empleado(ventana, barra_lateral):
-    for widget in ventana.winfo_children():
-        if widget != barra_lateral:
-            widget.destroy()
-
-    main_frame = Frame(ventana, bg="#E6F0FA")
-    main_frame.pack(expand=True, fill="both")
-
-    Label(main_frame, text="EMPLEADOS", font=("Arial", 20, "bold"), bg="#E6F0FA").pack(pady=10)
-    Label(main_frame, text="Aquí va el contenido de empleados", font=("Arial", 12), bg="#E6F0FA").pack(pady=10)
+    pass
