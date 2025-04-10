@@ -62,6 +62,10 @@ def ventana_login(ventana):
 
     opciones = ["Inventario", "Clientes", "Proveedor", "Pedidos", "Reportes", "Configuración", "Gastos", "Informacion"]
 
+"""
+Creacion de lado lateral para los botones
+"""
+
 def barra_lateral(ventana, rol):
     barra_lateral = Frame(ventana, bg="#D3D3D3", width=200)
     barra_lateral.pack(side="left", fill="y")
@@ -81,8 +85,18 @@ def barra_lateral(ventana, rol):
                    font=("Arial", 12),
                    command=funciones.get(opcion, lambda: None)).pack(pady=5, padx=10)
 
-def crear_seccion_clientes():
-    pass
+def mostrar_conenido_principal(ventana,rol,barra_lateral):
+    for widget in ventana.winfo_children():
+        if widget != barra_lateral:
+            widget.destroy()
+    
+    main_frame = Frame(ventana, bg = "#E6F0FA")
+    main_frame.pack(expand=True, fill="both")
+
+    Label(main_frame, text="PUNTO DE VENTA", font=("Arial", 20, "bold"), bg="#E6F0FA",)
+    Label(main_frame, text=f"Rol, {rol}", font=("Arial", 12), bg = "#E6F0FA").pack()
+    frame_clientess = crear_seccion_clientes(ventana,rol,barra_lateral)
+    frame_clientess.pack(pady=10)
 
 ventana = creacion_ventana()
 ventana_login(ventana)

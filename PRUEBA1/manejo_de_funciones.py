@@ -3,8 +3,11 @@ from db_soriana import ver_clientes
 """
 Manejo de interfaz para cada entidad
 """
+
+
+
 # # Manejo de la entidad de cliente frontend
-def manejar_clientes(ventana, rol, barra_lateral):
+def crear_seccion_clientes(ventana, rol, barra_lateral):
     frame_clientes = Frame(ventana, bg="#E6F0FA")
     frame_clientes.pack(side="right", fill="both", expand=True)
     # # REGISTRAMOS LAS ENTRADAS
