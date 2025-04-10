@@ -72,7 +72,7 @@ def barra_lateral(ventana, rol):
 
     opciones = ["Clientes","Inventario", "Proveedor", "Unidades", "Categorias", "Metodo de pago", "Empleado"]
     funciones = {
-        "Clientes": lambda: manejar_clientes(ventana, rol, barra_lateral),
+        "Clientes": crear_seccion_clientes(ventana, rol),
         "Inventario": manejar_inventario,
         "Proveedor": manejar_proveedor,
         "Unidades": manejar_unidades,
@@ -95,7 +95,7 @@ def mostrar_conenido_principal(ventana,rol,barra_lateral):
 
     Label(main_frame, text="PUNTO DE VENTA", font=("Arial", 20, "bold"), bg="#E6F0FA",)
     Label(main_frame, text=f"Rol, {rol}", font=("Arial", 12), bg = "#E6F0FA").pack()
-    frame_clientess = crear_seccion_clientes(ventana,rol,barra_lateral)
+    frame_clientess = crear_seccion_clientes(main_frame,rol)
     frame_clientess.pack(pady=10)
 
 ventana = creacion_ventana()

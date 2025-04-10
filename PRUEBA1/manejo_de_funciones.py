@@ -3,11 +3,23 @@ from db_soriana import ver_clientes
 """
 Manejo de interfaz para cada entidad
 """
+def manejo_usuarios(ventana,rol,barra_lateral):
+    for widget in ventana.winfo_children():
+        if widget != barra_lateral:
+            widget.destroy
 
+    main_frame = Frame(ventana, bg = "#E6F0FA")
+    main_frame.pack(expand=True, fill="both")
 
+    if rol == "Ad":
+        frame_clientes = crear_seccion_clientes(main_frame,rol)
+        frame_clientes.pack(pady = 10)
+    else:
+        Label(main_frame, text = "Acceso restringido: Solo Administradores pueden gestionar clientes.",
+              font= ("Arial", 12), bg = "#E6F0FA").pack(pady= 10)
 
 # # Manejo de la entidad de cliente frontend
-def crear_seccion_clientes(ventana, rol, barra_lateral):
+def crear_seccion_clientes(ventana, rol):
     frame_clientes = Frame(ventana, bg="#E6F0FA")
     frame_clientes.pack(side="right", fill="both", expand=True)
     # # REGISTRAMOS LAS ENTRADAS
