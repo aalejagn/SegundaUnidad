@@ -68,18 +68,18 @@ def barra_lateral(ventana, rol):
 
     opciones = ["Clientes","Inventario", "Proveedor", "Unidades", "Categorias", "Metodo de pago", "Empleado"]
     funciones = {
-        "Clientes":manejar_clientes,
-        "Inventario":manejar_inventario,
-        "Proveedor":manejar_proveedor,
-        "Unidades":manejar_unidades,
-        "Categorias":manejar_categorias,
-        "Metodo de pago":manejar_metodo_pago,
-        "Empleado":manejar_empleado
+        "Clientes": lambda: manejar_clientes(ventana, rol, barra_lateral),
+        "Inventario": manejar_inventario,
+        "Proveedor": manejar_proveedor,
+        "Unidades": manejar_unidades,
+        "Categorias": manejar_categorias,
+        "Metodo de pago": manejar_metodo_pago,
+        "Empleado": manejar_empleado
     }
     for opcion in opciones:
             Button(barra_lateral, text=opcion, bg="#4682B4", fg="white", width=20,
                    font=("Arial", 12),
-                   command=funciones[opcion]).pack(pady=5, padx=10)
+                   command=funciones.get(opcion, lambda: None)).pack(pady=5, padx=10)
 
 def crear_seccion_clientes():
     pass

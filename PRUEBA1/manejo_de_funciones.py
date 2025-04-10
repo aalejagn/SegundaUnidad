@@ -4,8 +4,9 @@ from db_soriana import ver_clientes
 Manejo de interfaz para cada entidad
 """
 # # Manejo de la entidad de cliente frontend
-def manejar_clientes(ventana,rol,barra_lateral):
-    frame_clientes = Frame(ventana, bg ="#E6F0FA")
+def manejar_clientes(ventana, rol, barra_lateral):
+    frame_clientes = Frame(ventana, bg="#E6F0FA")
+    frame_clientes.pack(side="right", fill="both", expand=True)
     # # REGISTRAMOS LAS ENTRADAS
     entradas = {}
     filas = ["Telefono", "Nombre", "Dirección", "RFC", "Correo"]
@@ -15,6 +16,7 @@ def manejar_clientes(ventana,rol,barra_lateral):
         entrada = Entry(frame_clientes)
         entrada.grid(row=i, column=1, padx=5, pady=5)
         entradas[fila] = entrada
+        
     # # Creacion de framen para los botones para la funcion de clientes
     frame_botones = Frame(frame_clientes, bg = "#E6F0FA")
     frame_botones.grid(row=5, columnspan=2, pady=10)
@@ -26,6 +28,7 @@ def manejar_clientes(ventana,rol,barra_lateral):
         tabla.column(col, width=100)
     tabla.grid(row=6, columnspan=2, pady=10, sticky="nsew")
     ver_clientes(tabla)
+    return frame_clientes
 
 # # # # Manejo de la entidad de cliente
 def manejar_inventario():
