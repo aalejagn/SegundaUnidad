@@ -1,5 +1,5 @@
 from tkinter import Tk, Label, Frame, Entry, Button, ttk, messagebox
-from db_soriana import ver_clientes  # Corregido el nombre del módulo
+from db_sorianaa import ver_clientes  # Corregido el nombre del módulo
 from manejo_de_funciones import *
 
 """
@@ -58,10 +58,11 @@ def ventana_login(ventana):
     Button(marco_login, text="Ingresar", font=("Arial", 13), width=15, 
            command=lambda: validar_usuarios(entry_usuario, entry_contraseña, ventana, marco_login))\
         .grid(row=5, column=0, columnspan=2, pady=20)
-
+    
 """
 Creacion de lado lateral para los botones
 """
+
 def barra_lateral(ventana, rol):
     barra_lateral = Frame(ventana, bg="#D3D3D3", width=200)
     barra_lateral.pack(side="left", fill="y")
@@ -106,3 +107,4 @@ def barra_lateral(ventana, rol):
 ventana = creacion_ventana()
 ventana_login(ventana)
 ventana.mainloop()
+
