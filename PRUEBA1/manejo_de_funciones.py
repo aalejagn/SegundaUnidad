@@ -47,23 +47,11 @@ def crear_seccion_clientes(ventana, tipo_usuario):
     tabla.grid(row=6, columnspan=2, pady=10, sticky="nsew")
     ver_clientes(tabla)
 
-    # # commandos de botones
-    def on_agregar():
-        telefono = entradas["Telefono:"].get().strip()
-        nombre = entradas["Nombre:"].get().strip()
-        direccion = entradas["Dirección:"].get().strip()
-        rfc = entradas["RFC:"].get().strip()
-        correo = entradas["Correo:"].get().strip()
-
-        if insertar_cliente(telefono,nombre,direccion,rfc,correo):
-            ver_clientes(tabla)
-            limpiar_campos(entradas.values())
-    
-    Button(frame_botones, text="Agregar", command=on_agregar).grid(row=5,column=0,padx=5
-    )
     return frame_clientes
+
 # Manejo de la entidad de inventario
 def manejar_inventario(ventana, barra_lateral):
+
     pass
 # Manejo de proveedores
 def manejar_proveedor(ventana, barra_lateral):
